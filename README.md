@@ -3,6 +3,7 @@
 - Maria José Hurtado
 - Nicolas Rodriguez
 - Eduardo José Mejia
+- Juan David Santacruz
 
 ## Instrucciones para instalar y ejecutar el proyecto:
 
