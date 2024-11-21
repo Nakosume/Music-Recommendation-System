@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendations</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Music Recommendation System</h1>
+    </header>
+
+    <main>
+        <section id="user-section">
+            <h2>Select a User and Method</h2>
+            <select id="user-select">
+              <!-- Opciones dinámicas -->
+            </select>
+            <select id="method-select">
+              <option value="average">Average</option>
+              <option value="minimum_misery">Minimum Misery</option>
+              <option value="maximum_pleasure">Maximum Pleasure</option>
+            </select>
+            <button id="get-recommendations">Get Recommendations</button>
+        </section>
+        
+        <section id="recommendation-section">
+            <h2>Recommendations</h2>
+          
+            <h3>Top 10 Songs</h3>
+            <ul id="top-songs"></ul>
+          
+            <h3>Top 5 Albums</h3>
+            <ul id="top-albums"></ul>
+          
+            <h3>Top 5 Artists</h3>
+            <ul id="top-artists"></ul>
+          
+            <h3>Top 3 Similar Users</h3>
+            <ul id="similar-users"></ul>
+          </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>
