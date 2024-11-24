@@ -11,12 +11,10 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average"):
     try:
         # Asegurarse de que las columnas son listas y no cadenas
         preferred_genres = user_row["preferred_genres"].split(',') if isinstance(user_row["preferred_genres"], str) else user_row["preferred_genres"]
-        favorite_tracks = user_row["favorite_tracks"].split(',') if isinstance(user_row["favorite_tracks"], str) else user_row["favorite_tracks"]
 
         # Filtrar canciones que coincidan con los géneros preferidos
         filtered_songs = song_data[
-            (song_data["track_genre"].isin(preferred_genres)) &
-            (~song_data["track_id"].isin(favorite_tracks))
+            (song_data["track_genre"].isin(preferred_genres))
         ].copy()
 
         # Métodos de agregación
@@ -36,17 +34,14 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average"):
 
         # Top 3 usuarios similares
         user_genres = set(preferred_genres)
-        user_tracks = set(favorite_tracks)
         user_similarity = []
 
         for _, other_user in user_data.iterrows():
             if other_user["user_id"] == user_row["user_id"]:
                 continue
             other_genres = set(other_user["preferred_genres"].split(','))
-            other_tracks = set(other_user["favorite_tracks"].split(','))
             genre_similarity = len(user_genres & other_genres)
-            track_similarity = len(user_tracks & other_tracks)
-            user_similarity.append((other_user["user_id"], genre_similarity + track_similarity))
+            user_similarity.append((other_user["user_id"], genre_similarity))
 
         top_users = [u[0] for u in sorted(user_similarity, key=lambda x: x[1], reverse=True)[:3]]
 
