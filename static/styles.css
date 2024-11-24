@@ -1,48 +1,201 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #121212; 
+    color: #ffffff; 
+    line-height: 1.6; 
 }
 
+/* Cabecera */
 header {
-    background-color: #6200ea;
-    color: white;
-    padding: 1rem;
+    background-color: #1db954; 
+    color: #ffffff; 
+    padding: 2rem;
     text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+    transition: background-color 0.3s; /* Animación al interactuar */
 }
 
+header:hover {
+    background-color: #1aa34a; /* Efecto hover para mayor interactividad */
+}
+
+/* Sección principal */
 main {
-    padding: 1rem;
+    padding: 2rem;
+    max-width: 1200px; /* Define un ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el contenido */
 }
 
+/* Títulos */
 h1,
 h2 {
     margin: 0 0 1rem 0;
+    font-weight: 700; 
 }
 
+/* Botones */
 button {
-    background-color: #6200ea;
-    color: white;
+    background-color: #1db954; 
+    color: white; 
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 2rem; 
+    font-size: 1rem; /* Tamaño de texto ajustado */
+    border-radius: 30px; /* Bordes redondeados */
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para un efecto flotante */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Suaviza cambios */
 }
 
 button:hover {
-    background-color: #3700b3;
+    background-color: #1aa34a; /* Cambio de color en hover */
+    transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
 }
 
-#recommendation-list {
-    list-style: none;
+button:active {
+    transform: scale(0.95); /* Disminuye ligeramente al hacer clic */
+}
+
+/* Listas de recomendaciones */
+ul {
+    list-style: none; /* Elimina los puntos de las listas */
     padding: 0;
+    margin: 1rem 0;
 }
 
-#recommendation-list li {
-    background: white;
+ul li {
+    background: #242424; /* Fondo oscuro elegante */
+    color: #b3b3b3; /* Texto en gris claro */
     margin: 0.5rem 0;
     padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #333; /* Borde más claro para contraste */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efecto interactivo */
+}
+
+ul li:hover {
+    transform: translateY(-5px); /* Se eleva al pasar el mouse */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.5); /* Sombra más profunda */
+}
+
+/* Selector de usuarios y métodos */
+select {
+    background: #242424; 
+    color: #ffffff; 
+    padding: 0.8rem;
+    border: 1px solid #333; /* Bordes oscuros */
+    border-radius: 30px; /* Bordes redondeados */
+    font-size: 1rem;
+    margin: 0 1rem 1rem 0; /* Espaciado alrededor */
+    outline: none; /* Elimina bordes azules */
+    transition: border-color 0.3s ease; /* Suaviza el cambio de color */
+}
+
+select:focus {
+    border-color: #1db954; /* Resalta cuando está activo */
+}
+
+/* Sección de recomendaciones */
+#recommendation-section {
+    background: #181818; /* Fondo oscuro para separar contenido */
+    padding: 2rem;
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra envolvente */
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in; /* Animación de entrada */
+}
+
+/* Animación para la sección */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejora para pantallas pequeñas */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    ul li {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Estilo general de la sección */
+#user-section {
+    background: #181818; 
+    padding: 2rem;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in; /* Animación de entrada */
+}
+
+/* Estilo de los labels y títulos */
+#user-section h2 {
+    color: #1db954;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Estilo base para los select */
+select {
+    appearance: none; /* Elimina la flecha por defecto del navegador */
+    background: #242424; 
+    color: #ffffff; 
+    padding: 0.8rem 2.5rem 0.8rem 1rem; /* Espaciado interno */
+    border: 1px solid #333; /* Bordes oscuros */
+    border-radius: 30px; /* Bordes redondeados */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Suaviza transiciones */
+    outline: none; /* Elimina bordes al seleccionar */
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+select:hover {
+    border-color: #1db954; /* Cambia el color del borde al pasar el mouse */
+}
+
+select:focus {
+    border-color: #1aa34a; /* Color más claro al enfocar */
+    box-shadow: 0 0 5px #1aa34a; /* Efecto brillante */
+}
+
+/* Animación para la sección */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 768px) {
+    select {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem 0.6rem 1rem;
+    }
 }
