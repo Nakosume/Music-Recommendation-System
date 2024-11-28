@@ -5,6 +5,9 @@
 - Eduardo José Mejia
 - Juan David Santacruz
 
+## Enlace de formulario
+[text](https://forms.gle/xQeJSFDjDUYmYgaV9)
+
 ## Instrucciones para instalar y ejecutar el proyecto:
 
 ### 1. Clona este repositorio o descarga los archivos del proyecto.
