@@ -5,8 +5,10 @@ const recommendationList = document.getElementById("recommendation-list");
 const getRecommendationsButton = document.getElementById("get-recommendations");
 
 // Cargar usuarios en el selector al cargar la página
-window.onload = async () => {
-  const users = await fetch("/static/users.csv")
+//No es necesario
+/* window.onload = async () => {
+
+  const users = await fetch("./static/users.csv")
     .then((response) => response.text())
     .then((text) => {
       const rows = text.split("\n").slice(1); // Omitir la cabecera
@@ -20,7 +22,7 @@ window.onload = async () => {
     option.textContent = userId;
     userSelect.appendChild(option);
   });
-};
+}; */
 
 // Función para llenar el selector de géneros con los géneros preferidos del usuario
 async function populateGenreSelect(userId) {

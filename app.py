@@ -7,8 +7,12 @@ app = Flask(__name__)
 
 # Cargar datos
 songs_data = pd.read_csv('dataset.csv')
-users_data = pd.read_csv('./static/users.csv')
+users_data = pd.read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vR0uI5CdJu2KAfL5FUqTmr_eFrtmyavT2uCCZUMOFDAIH7zuAf2LwRLwONLjSjHKZumHjLE0lvymAiQ/pub?output=csv')
 
+""" 
+EN CASO QUE EL CSV DEL DOCS NO FUNCIONES
+users_data = pd.read_csv('./static/users.csv')
+ """
 
 def recommend_songs_and_more(user_row, song_data, user_data, method="average", preferred_genres=None, favorite_tracks=None):
     try:
@@ -92,9 +96,10 @@ def home():
 @app.route('/users', methods=['GET'])
 def get_users():
     # Cargar usuarios desde el CSV
-    users_df = pd.read_csv("users.csv")
+    users_df = users_data
     # Convertir a lista de diccionarios
     users = users_df[["user_id"]].to_dict(orient="records")
+    print("Usuarios:", users)
     return jsonify(users)
 
 @app.route('/user_preferences', methods=['GET'])
