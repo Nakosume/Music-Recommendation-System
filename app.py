@@ -10,30 +10,7 @@ songs_data = pd.read_csv('dataset.csv')
 users_data = pd.read_csv('./static/users.csv')
 
 
-# Preparar datos para KNN
-unique_tracks = songs_data['track_name'].dropna().unique()
-user_track_matrix = np.zeros((len(users_data), len(unique_tracks)))
-
-for i, fav_tracks in enumerate(users_data["favorite_tracks"]):
-    for track in fav_tracks.split(','):
-        if track in unique_tracks:
-            user_track_matrix[i, list(unique_tracks).index(track)] = 1
-
-# Configurar KNN
-knn_model = NearestNeighbors(metric='cosine', algorithm='brute')
-knn_model.fit(user_track_matrix)
-
-# Función para encontrar usuarios similares
-def find_similar_users(user_id, n_neighbors=3):
-    try:
-        user_index = users_data.index[users_data["user_id"] == user_id][0]
-        distances, indices = knn_model.kneighbors(user_track_matrix[user_index].reshape(1, -1), n_neighbors=n_neighbors + 1)
-        similar_users = [users_data.iloc[i]["user_id"] for i in indices[0] if users_data.iloc[i]["user_id"] != user_id]
-        return similar_users
-    except IndexError:
-        return []
-
-def recommend_songs_and_more(user_row, song_data, user_data, method="average", preferred_genres=None):
+def recommend_songs_and_more(user_row, song_data, user_data, method="average", preferred_genres=None, favorite_tracks=None):
     try:
         if preferred_genres is None:
             preferred_genres = user_row["preferred_genres"].split(',')
@@ -59,7 +36,7 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
         top_artists = top_songs["artists"].value_counts().head(5).index.tolist()
 
         # Top 3 usuarios similares
-        user_genres = set(preferred_genres)
+        """user_genres = set(preferred_genres)
         user_similarity = []
         for _, other_user in user_data.iterrows():
             if other_user["user_id"] == user_row["user_id"]:
@@ -68,7 +45,33 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
             genre_similarity = len(user_genres & other_genres)
             user_similarity.append((other_user["user_id"], genre_similarity))
 
-        top_users = [u[0] for u in sorted(user_similarity, key=lambda x: x[1], reverse=True)[:3]]
+        top_users = [u[0] for u in sorted(user_similarity, key=lambda x: x[1], reverse=True)[:3]]"""
+
+        # Top 5 Similar Songs
+
+        features = ['danceability', 'energy', 'popularity']
+        songs_features = songs_data[features].dropna()
+
+        knn = NearestNeighbors(n_neighbors=5, metric='cosine') 
+        knn.fit(songs_features)
+
+        def get_similar_tracks(track_name):
+            print("Hey Hey", track_name)
+            track = songs_data[songs_data['track_name'] == track_name][features]
+            if track.empty:
+                return []
+            
+            distances, indices = knn.kneighbors(track)
+            
+            similar_track = songs_data.iloc[indices[0]]['track_name']
+            similar_artist = songs_data.iloc[indices[0]]['artists']
+            similar_song = ""+similar_track +" by "+ similar_artist
+            similar_tracks = similar_song.tolist()
+            return similar_tracks
+
+        similar_tracks = get_similar_tracks(favorite_tracks[0])
+        print("Tracks similares:", similar_tracks)
+        top_users = similar_tracks
 
         return {
             "songs": top_songs[["track_name", "artists", "album_name", "track_genre", "popularity"]].to_dict(orient="records"),
@@ -80,9 +83,6 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
     except Exception as e:
         print(f"Error en recommend_songs_and_more: {e}")
         raise
-
-
-
 
 @app.route('/')
 def home():
@@ -121,15 +121,12 @@ def recommend():
 
         user_row = users_data[users_data["user_id"] == user_id].iloc[0]
         preferred_genres = user_row["preferred_genres"].split(',')
+        favorite_tracks = user_row["favorite_tracks"].split(',')
 
         if selected_genre:
             preferred_genres = [selected_genre]
 
-        recommendations = recommend_songs_and_more(user_row, songs_data, users_data, method, preferred_genres)
-
-        # Encontrar usuarios similares usando KNN
-        similar_users = find_similar_users(user_id)
-        recommendations["similar_users"] = similar_users
+        recommendations = recommend_songs_and_more(user_row, songs_data, users_data, method, preferred_genres, favorite_tracks)
 
         return jsonify(recommendations)
 

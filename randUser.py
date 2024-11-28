@@ -13,7 +13,7 @@ unique_tracks = songs_data['track_name'].dropna().unique()
 users_data = {
     "user_id": [f"user_{i}" for i in range(1, 51)],
     "preferred_genres": [",".join(random.sample(list(unique_genres), k=2)) for _ in range(50)],  # 2 géneros favoritos por usuario
-    "favorite_tracks": [",".join(random.sample(list(unique_tracks), k=2)) for _ in range(50)]  # 2 tracks favoritos por usuario
+    "favorite_tracks": [",".join(random.sample(list(unique_tracks), k=1)) for _ in range(50)]  # 1 track favorito por usuario
 }
 
 # Crear DataFrame y guardar como CSV
