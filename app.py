@@ -14,7 +14,7 @@ EN CASO QUE EL CSV DEL DOCS NO FUNCIONES
 users_data = pd.read_csv('./static/users.csv')
  """
 
-def recommend_songs_and_more(user_row, song_data, user_data, method="average", preferred_genres=None, favorite_tracks=None):
+def recommend_songs_and_more(user_row, song_data, user_data, method="average", preferred_genres=None, favorite_track=None):
     try:
         if preferred_genres is None:
             preferred_genres = user_row["preferred_genres"].split(',')
@@ -73,7 +73,7 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
             similar_tracks = similar_song.tolist()
             return similar_tracks
 
-        similar_tracks = get_similar_tracks(favorite_tracks[0])
+        similar_tracks = get_similar_tracks(favorite_track[0])
         print("Tracks similares:", similar_tracks)
         top_users = similar_tracks
 
@@ -126,12 +126,12 @@ def recommend():
 
         user_row = users_data[users_data["user_id"] == user_id].iloc[0]
         preferred_genres = user_row["preferred_genres"].split(',')
-        favorite_tracks = user_row["favorite_tracks"].split(',')
+        favorite_track = user_row["favorite_track"].split(',')
 
         if selected_genre:
             preferred_genres = [selected_genre]
 
-        recommendations = recommend_songs_and_more(user_row, songs_data, users_data, method, preferred_genres, favorite_tracks)
+        recommendations = recommend_songs_and_more(user_row, songs_data, users_data, method, preferred_genres, favorite_track)
 
         return jsonify(recommendations)
 
