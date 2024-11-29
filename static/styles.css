@@ -1,25 +1,26 @@
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212; 
-    color: #ffffff; 
-    line-height: 1.6; 
+    background-color: #121212;
+    color: #ffffff;
+    line-height: 1.6;
 }
 
 /* Cabecera */
 header {
-    background-color: #1db954; 
-    color: #ffffff; 
-    padding: 2rem;
+    background-color: #6B37F4;
+    color: #ffffff;
+    padding: 1rem;
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
     transition: background-color 0.3s; /* Animación al interactuar */
 }
 
 header:hover {
-    background-color: #1aa34a; /* Efecto hover para mayor interactividad */
+    background-color: #F986DC; /* Efecto hover para mayor interactividad */
 }
+
 
 /* Sección principal */
 main {
@@ -29,18 +30,27 @@ main {
 }
 
 /* Títulos */
+#enunciado{
+    font-weight: 500;
+    font-size: 1rem;
+
+}
 h1,
 h2 {
     margin: 0 0 1rem 0;
-    font-weight: 700; 
+    font-weight: 700;
+}
+
+img {
+    width: 200px;
 }
 
 /* Botones */
 button {
-    background-color: #1db954; 
-    color: white; 
+    background-color: #6B37F4;
+    color: white;
     border: none;
-    padding: 0.8rem 2rem; 
+    padding: 0.8rem 2rem;
     font-size: 1rem; /* Tamaño de texto ajustado */
     border-radius: 30px; /* Bordes redondeados */
     cursor: pointer;
@@ -76,13 +86,14 @@ ul li {
 
 ul li:hover {
     transform: translateY(-5px); /* Se eleva al pasar el mouse */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.5); /* Sombra más profunda */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
 }
 
 /* Selector de usuarios y métodos */
 select {
-    background: #242424; 
-    color: #ffffff; 
+    background: #242424;
+    color: #ffffff;
     padding: 0.8rem;
     border: 1px solid #333; /* Bordes oscuros */
     border-radius: 30px; /* Bordes redondeados */
@@ -93,7 +104,7 @@ select {
 }
 
 select:focus {
-    border-color: #1db954; /* Resalta cuando está activo */
+    border-color: #6B37F4; /* Resalta cuando está activo */
 }
 
 /* Sección de recomendaciones */
@@ -133,31 +144,32 @@ select:focus {
     ul li {
         font-size: 0.9rem;
         padding: 0.8rem;
+        color: #ffffff;
     }
 }
 
 /* Estilo general de la sección */
 #user-section {
-    background: #181818; 
+    background: #181818;
     padding: 2rem;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     margin-bottom: 2rem;
     animation: fadeIn 1s ease-in; /* Animación de entrada */
 }
 
 /* Estilo de los labels y títulos */
 #user-section h2 {
-    color: #1db954;
+    color: white;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 /* Estilo base para los select */
 select {
-    appearance: none; /* Elimina la flecha por defecto del navegador */
-    background: #242424; 
-    color: #ffffff; 
+    appearance: none;
+    background: #242424;
+    color: #ffffff;
     padding: 0.8rem 2.5rem 0.8rem 1rem; /* Espaciado interno */
     border: 1px solid #333; /* Bordes oscuros */
     border-radius: 30px; /* Bordes redondeados */
@@ -172,7 +184,7 @@ select {
 }
 
 select:hover {
-    border-color: #1db954; /* Cambia el color del borde al pasar el mouse */
+    border-color: #6B37F4; /* Cambia el color del borde al pasar el mouse */
 }
 
 select:focus {
