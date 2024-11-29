@@ -64,7 +64,7 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
             t_name = track_name.title()
             track = songs_data[songs_data['track_name'] == t_name][features]
             if track.empty:
-                return []
+                return ["No song was found / Your song isn't in our Data Base"]
             
             distances, indices = knn.kneighbors(track)
             
