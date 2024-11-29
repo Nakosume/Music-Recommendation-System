@@ -60,8 +60,9 @@ def recommend_songs_and_more(user_row, song_data, user_data, method="average", p
         knn.fit(songs_features)
 
         def get_similar_tracks(track_name):
-            print("Hey Hey", track_name)
-            track = songs_data[songs_data['track_name'] == track_name][features]
+            print("Hey Hey", track_name.title())
+            t_name = track_name.title()
+            track = songs_data[songs_data['track_name'] == t_name][features]
             if track.empty:
                 return []
             
