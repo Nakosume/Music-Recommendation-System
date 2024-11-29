@@ -59,7 +59,8 @@ button {
 }
 
 button:hover {
-    background-color: #1aa34a; /* Cambio de color en hover */
+    background-color: #ffffff; /* Cambio de color en hover */
+    color: #6B37F4;;
     transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
 }
 
@@ -188,8 +189,8 @@ select:hover {
 }
 
 select:focus {
-    border-color: #1aa34a; /* Color más claro al enfocar */
-    box-shadow: 0 0 5px #1aa34a; /* Efecto brillante */
+    border-color: #6B37F4; /* Color más claro al enfocar */
+    box-shadow: 0 0 5px #6B37F4; /* Efecto brillante */
 }
 
 /* Animación para la sección */
